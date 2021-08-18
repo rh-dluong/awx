@@ -86,7 +86,12 @@ def _update_org_from_attr(user, related, attr, remove, remove_admins, remove_aud
     for org_name in attr:
         try:
             if settings.SAML_AUTO_CREATE_OBJECTS:
-                org = Organization.objects.get_or_create(name=org_name)[0]
+                organization_alias = settings.SOCIAL_AUTH_SAML_ORGANIZATION_ATTR.get('organization_alias', None)
+                if organization_alias:
+                    organization_name = organization_alias
+                else:
+                    organization_name = org_name
+                org = Organization.objects.get_or_create(name=organization_name)[0]
                 org.create_default_galaxy_credential()
             else:
                 org = Organization.objects.get(name=org_name)

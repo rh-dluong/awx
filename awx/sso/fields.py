@@ -714,6 +714,7 @@ class SAMLOrgAttrField(HybridDictField):
     saml_admin_attr = fields.CharField(required=False, allow_null=True)
     remove_auditors = fields.BooleanField(required=False)
     saml_auditor_attr = fields.CharField(required=False, allow_null=True)
+    organization_alias = fields.CharField(required=False, allow_null=True)
 
     child = _Forbidden()
 
