@@ -75,10 +75,16 @@ def vmware(cred, env, private_data_dir):
 def _openstack_data(cred):
     openstack_auth = dict(
         auth_url=cred.get_input('host', default=''),
-        username=cred.get_input('username', default=''),
-        password=cred.get_input('password', default=''),
         project_name=cred.get_input('project', default=''),
     )
+    if cred.has_input('username'):
+        openstack_auth['username'] = cred.get_input('username', default='')
+    if cred.has_input('password'):
+        openstack_auth['password'] = cred.get_input('password', default='')
+    if cred.has_input('application_credential_id'):
+        openstack_auth['application_credential_id'] = cred.get_input('application_credential_id', default='')
+    if cred.has_input('application_credential_secret'):
+        openstack_auth['application_credential_secret'] = cred.get_input('application_credential_secret', default='')
     if cred.has_input('project_domain_name'):
         openstack_auth['project_domain_name'] = cred.get_input('project_domain_name', default='')
     if cred.has_input('domain'):

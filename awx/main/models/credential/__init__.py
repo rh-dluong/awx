@@ -743,6 +743,17 @@ ManagedCredentialType(
                 'secret': True,
             },
             {
+                'id': 'application_credential_id',
+                'label': gettext_noop('Application ID'),
+                'type': 'string',
+            },
+            {
+                'id': 'application_credential_secret',
+                'label': gettext_noop('Application Secret'),
+                'type': 'string',
+                'secret': True,
+            },
+            {
                 'id': 'host',
                 'label': gettext_noop('Host (Authentication URL)'),
                 'type': 'string',
@@ -782,7 +793,7 @@ ManagedCredentialType(
                 'default': True,
             },
         ],
-        'required': ['username', 'password', 'host', 'project'],
+        'required': ['host', 'project'],
     },
 )
 
